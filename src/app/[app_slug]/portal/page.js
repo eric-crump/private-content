@@ -5,9 +5,14 @@ import { DocumentIcon } from "@heroicons/react/24/outline";
 
 export default function Page({ params }){
     const [entry, setEntry] = useState({});
+    const [pageEntry, setPageEntry] = useState({});
     const [docs, setDocs] = useState([]);
 
     const getUserGroups = async () => {
+        const config = await Stack.getElementWithPropertyWithRefs('appconfig', 'url_slug', params.app_slug, ['users.user']);
+        console.log('portal', config[0])
+        setPageEntry(config[0]);
+
         console.log(localStorage.getItem('user'));
         const entry = await Stack.getElementWithProperty('user', 'title', localStorage.getItem('user'));
         const temp = [];
@@ -33,8 +38,8 @@ export default function Page({ params }){
 
     return(
         <div>
-            <div className="w-full bg-[#C41329]">
-                <img className="h-24 mx-auto my-auto" src="https://images.contentstack.io/v3/assets/blt5ed7ff63fa64a8c4/bltc385eff0b63fd3cc/65b6b0e65cdaecc8883b83ea/logo.svg" />
+            <div className="w-full bg-[#C41329]" style={{backgroundColor: pageEntry.portal.color?.hex}}>
+                <img className="h-24 mx-auto my-auto" src={pageEntry.portal.image?.url} />
             </div>
 
             <div className="md:p-16 p-4">
