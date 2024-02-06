@@ -38,8 +38,8 @@ export default function Page({ params }){
 
     return(
         <div>
-            <div className="w-full bg-[#C41329]" style={{backgroundColor: pageEntry.portal.color?.hex}}>
-                <img className="h-24 mx-auto my-auto" src={pageEntry.portal.image?.url} />
+            <div className="w-full bg-[#C41329]" style={{backgroundColor: pageEntry.portal?.color?.hex}}>
+                <img className="h-24 mx-auto my-auto" src={pageEntry.portal?.image?.url} />
             </div>
 
             <div className="md:p-16 p-4">
